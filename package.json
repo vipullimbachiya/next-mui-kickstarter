@@ -9,12 +9,23 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emotion/cache": "^11.11.0",
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@mui/material": "^5.15.0",
+    "@mui/material-nextjs": "^5.15.0",
+    "@reduxjs/toolkit": "^2.0.1",
+    "i18next": "^23.7.9",
+    "i18next-resources-to-backend": "^1.2.0",
+    "next": "14.0.4",
     "react": "^18",
     "react-dom": "^18",
-    "next": "14.0.4"
+    "react-i18next": "^13.5.0",
+    "react-redux": "^9.0.4"
   },
   "devDependencies": {
-    "eslint": "^8",
-    "eslint-config-next": "14.0.4"
+    "eslint": "^8.55.0",
+    "eslint-config-next": "14.0.4",
+    "eslint-plugin-react": "^7.33.2"
   }
 }
