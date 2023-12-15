@@ -5,11 +5,11 @@ import { redirect } from 'next/navigation'
 
 export default Layout
 
-function Layout({ children }) {
+function Layout({ children, params: { lng } }) {
   const token = GetToken()
 
   if (token) {
-    redirect(`/`)
+    redirect(`/${lng}`)
   }
   return <Box sx={SxStyle.container}>{children}</Box>
 }

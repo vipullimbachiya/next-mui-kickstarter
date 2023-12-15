@@ -13,11 +13,9 @@ const ThemeProviderContext = ({ children }) => {
   const defaultTheme = () => {
     let theme = lightTheme
     if (typeof window !== 'undefined') {
-      console.log('You are on the browser')
       // 👉️ can use localStorage here
       theme = localStorage.getItem('mode') === 'dark' ? darkTheme : lightTheme
     } else {
-      console.log('You are on the server')
     }
     return theme
   }

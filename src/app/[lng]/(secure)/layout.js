@@ -1,12 +1,12 @@
 'use client'
-import AppHeader from '@/_components/header'
+import AppHeader from '@/app/[lng]/_components/header'
 import { GetToken } from '@/utils/helper'
 import { Box } from '@mui/material'
 import { redirect } from 'next/navigation'
 
 export default Layout
 
-function Layout({ children }) {
+function Layout({ children, params: { lng } }) {
   const token = GetToken()
 
   if (!token) {
@@ -14,7 +14,7 @@ function Layout({ children }) {
   }
   return (
     <div>
-      <AppHeader />
+      <AppHeader lng={lng} />
       <Box sx={SxStyle.container}>{children}</Box>
     </div>
   )

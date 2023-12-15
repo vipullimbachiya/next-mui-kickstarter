@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import { useAppDispatch } from '@/lib/hooks'
-import { GetLanguage, SetLanguage, userLogout } from '@/utils/helper'
+import { userLogout } from '@/utils/helper'
 import {
   AppBar,
   Button,
@@ -10,22 +10,24 @@ import {
   Typography,
 } from '@mui/material'
 import { ThemeContext } from '@/utils/ThemeContext'
+import { languages } from '@/app/i18n/settings'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 
-const AppHeader = () => {
+const AppHeader = ({ lng }) => {
   const dispatch = useAppDispatch()
   const { toggleTheme } = useContext(ThemeContext)
+  const pathname = usePathname()
 
   const Logout = () => {
-    userLogout()
+    userLogout(dispatch, lng)
   }
 
-  const changeLanguage = (e) => {
-    const { value } = e.target
-    SetLanguage(dispatch, value)
-    // i18n.changeLanguage(value)
+  const replaceFirstName = (path, replacement) => {
+    let array = path.split('/')
+    array[1] = replacement
+    return array.join('/')
   }
-  const lang = GetLanguage()
-
   return (
     <AppBar position="static">
       <Toolbar>
@@ -38,12 +40,20 @@ const AppHeader = () => {
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
-          value={lang}
+          value={lng}
           label="Language"
-          onChange={changeLanguage}
+          //  onChange={changeLanguage}
         >
-          <MenuItem value={'en'}>En</MenuItem>
-          <MenuItem value={'de'}>De</MenuItem>
+          {languages.map((l, index) => {
+            const newPath = replaceFirstName(pathname, l)
+            return (
+              <MenuItem value={l} key={l}>
+                <Link href={newPath}>
+                  <Typography>{l}</Typography>
+                </Link>
+              </MenuItem>
+            )
+          })}
         </Select>
         <Button color="inherit" onClick={Logout}>
           Logout
@@ -52,4 +62,5 @@ const AppHeader = () => {
     </AppBar>
   )
 }
+
 export default AppHeader
