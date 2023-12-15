@@ -1,6 +1,5 @@
 import { useSelector } from 'react-redux'
-import { setLanguage, setToken } from '../lib/features/user/userSlice'
-import { STORE_LANGUAGE_KEY } from './constant'
+import { setToken } from '../lib/features/user/userSlice'
 import { redirect } from 'next/navigation'
 
 export const SetToken = (dispatch, token) => {
@@ -19,6 +18,4 @@ export const clearLocalStorage = () => localStorage.clear()
 export const userLogout = (dispatch, lng) => {
   RemoveToken(dispatch)
   redirect(`/${lng}`)
-  // window.location.replace('/')
-  // window.location.reload()
 }
